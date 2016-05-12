@@ -11,14 +11,6 @@ Write Django as usual, and let ``django-bootstrap4`` make template output into B
 .. image:: https://img.shields.io/coveralls/GabrielUlici/django-bootstrap4/master.svg
   :target: https://coveralls.io/r/GabrielUlici/django-bootstrap4?branch=master
 
-.. image:: https://img.shields.io/pypi/v/django-bootstrap4.svg
-.. :target: https://pypi.python.org/pypi/django-bootstrap4
-.. :alt: Latest PyPI version
-
-.. image:: https://img.shields.io/pypi/dm/django-bootstrap4.svg
-.. :target: https://pypi.python.org/pypi/django-bootstrap4
-.. :alt: Number of PyPI downloads per month
-
 
 Requirements
 ------------
