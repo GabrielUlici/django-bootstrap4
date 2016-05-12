@@ -195,17 +195,16 @@ class SettingsTest(TestCase):
 
     def test_tether_javascript_tag(self):
         res = render_template_with_form('{% bootstrap_javascript %}')
-        print(res)
         self.assertIn(
-            res.strip(),
-            '<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>'
+            '<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>',
+            res.strip()
         )
 
     def test_bootstrap_javascript_tag(self):
         res = render_template_with_form('{% bootstrap_javascript %}')
         self.assertIn(
-            res.strip(),
-            '<script src="//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js"></script>'
+            '<script src="//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js"></script>',
+            res.strip()
         )
 
     def test_bootstrap_css_tag(self):
