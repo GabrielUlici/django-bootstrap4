@@ -429,7 +429,7 @@ class FieldRenderer(BaseRenderer):
                     'layout': self.layout,
                 }
             )
-            html += '<span class="help-block">{help}</span>'.format(help=help_html)
+            html += '<small class="text-muted">{help}</small>'.format(help=help_html)
         return html
 
     def get_field_class(self):
@@ -481,7 +481,7 @@ class FieldRenderer(BaseRenderer):
             form_group_class = add_css_class(
                 form_group_class, self.required_css_class)
         if self.field_errors:
-            form_group_class = add_css_class(form_group_class, 'has-error')
+            form_group_class = add_css_class(form_group_class, 'has-danger')
         elif self.field.form.is_bound:
             form_group_class = add_css_class(
                 form_group_class, self.success_css_class)

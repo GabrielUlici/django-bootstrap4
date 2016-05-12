@@ -140,7 +140,7 @@ def render_field_and_label(
         label_class = add_css_class(label_class, 'form-control-label')
     html = field
     if field_class:
-        html = '<fieldset class="{klass}">{html}</fieldset>'.format(
+        html = '<div class="{klass}">{html}</div>'.format(
             klass=field_class, html=html)
     if label:
         html = render_label(
@@ -152,7 +152,7 @@ def render_form_group(content, css_class=FORM_GROUP_CLASS):
     """
     Render a Bootstrap form group
     """
-    return '<fieldset class="{klass}">{content}</fieldset>'.format(
+    return '<div class="{klass}">{content}</div>'.format(
         klass=css_class,
         content=content,
     )
