@@ -85,9 +85,7 @@ def render_button(
     attrs = {}
     classes = add_css_class('btn', button_class)
     size = text_value(size).lower().strip()
-    if size == 'xs':
-        classes = add_css_class(classes, 'btn-xs')
-    elif size == 'sm' or size == 'small':
+    if size == 'sm' or size == 'small':
         classes = add_css_class(classes, 'btn-sm')
     elif size == 'lg' or size == 'large':
         classes = add_css_class(classes, 'btn-lg')
@@ -95,7 +93,7 @@ def render_button(
         pass
     elif size:
         raise BootstrapError(
-            'Parameter "size" should be "xs", "sm", "lg" or ' +
+            'Parameter "size" should be "sm", "lg" or ' +
             'empty ("{}" given).'.format(size))
     if button_type:
         if button_type == 'submit':
