@@ -197,7 +197,7 @@ class SettingsTest(TestCase):
         res = render_template_with_form('{% bootstrap_javascript %}')
         self.assertEqual(
             res.strip(),
-            '<script src="cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js"></script>'
+            '<script src="//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js"></script>'
         )
 
     def test_bootstrap_css_tag(self):
