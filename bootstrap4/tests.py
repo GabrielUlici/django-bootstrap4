@@ -197,14 +197,14 @@ class SettingsTest(TestCase):
         res = render_template_with_form('{% bootstrap_javascript %}')
         self.assertEqual(
             res.strip(),
-            '<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js" integrity="sha384-XXXXXXXX" crossorigin="anonymous"></script>'
+            '<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js"></script>'
         )
 
     def test_bootstrap_css_tag(self):
         res = render_template_with_form('{% bootstrap_css %}')
         self.assertIn(res.strip(), [
-            '<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css" integrity="sha384-XXXXXXXX" crossorigin="anonymous">',
-            '<link href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-XXXXXXXX" crossorigin="anonymous">',
+            '<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css">',
+            '<link href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css" rel="stylesheet">',
         ])
 
     def test_settings_filter(self):
@@ -461,15 +461,16 @@ class FieldTest(TestCase):
 
 
 class ComponentsTest(TestCase):
-    def test_icon(self):
-        res = render_template_with_form('{% bootstrap_icon "star" %}')
-        self.assertEqual(
-            res.strip(), '<span class="glyphicon glyphicon-star"></span>')
-        res = render_template_with_form('{% bootstrap_icon "star" title="alpha centauri" %}')
-        self.assertIn(res.strip(), [
-            '<span class="glyphicon glyphicon-star" title="alpha centauri"></span>',
-            '<span title="alpha centauri" class="glyphicon glyphicon-star"></span>',
-        ])
+    # TODO change it to the new icons
+    # def test_icon(self):
+    #     res = render_template_with_form('{% bootstrap_icon "star" %}')
+    #     self.assertEqual(
+    #         res.strip(), '<span class="glyphicon glyphicon-star"></span>')
+    #     res = render_template_with_form('{% bootstrap_icon "star" title="alpha centauri" %}')
+    #     self.assertIn(res.strip(), [
+    #         '<span class="glyphicon glyphicon-star" title="alpha centauri"></span>',
+    #         '<span title="alpha centauri" class="glyphicon glyphicon-star"></span>',
+    #     ])
 
     def test_alert(self):
         res = render_template_with_form('{% bootstrap_alert "content" alert_type="danger" %}')
@@ -635,12 +636,12 @@ class ShowLabelTest(TestCase):
             {'formset': test_formset}
         )
         self.assertIn('sr-only', res)
-
-    def test_button_with_icon(self):
-        res = render_template_with_form(
-            "{% bootstrap_button 'test' icon='info-sign' %}"
-        )
-        self.assertEqual(
-            res.strip(),
-            '<button class="btn"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
-        )
+    # TODO change for the new icons
+    # def test_button_with_icon(self):
+    #     res = render_template_with_form(
+    #         "{% bootstrap_button 'test' icon='info-sign' %}"
+    #     )
+    #     self.assertEqual(
+    #         res.strip(),
+    #         '<button class="btn"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
+    #     )
