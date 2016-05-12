@@ -203,8 +203,8 @@ class SettingsTest(TestCase):
     def test_bootstrap_css_tag(self):
         res = render_template_with_form('{% bootstrap_css %}')
         self.assertIn(res.strip(), [
-            '<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css">',
-            '<link href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css" rel="stylesheet">',
+            '<link rel="stylesheet" href="//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css">',
+            '<link href="//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css" rel="stylesheet">',
         ])
 
     def test_settings_filter(self):
