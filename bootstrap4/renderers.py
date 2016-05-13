@@ -480,8 +480,6 @@ class FieldRenderer(BaseRenderer):
         if self.field.field.required and self.required_css_class:
             form_group_class = add_css_class(
                 form_group_class, self.required_css_class)
-            form_group_class = add_css_class(
-                form_group_class, 'row')
         if self.field_errors:
             form_group_class = add_css_class(form_group_class, 'has-danger')
         elif self.field.form.is_bound:
@@ -490,6 +488,8 @@ class FieldRenderer(BaseRenderer):
         if self.layout == 'horizontal':
             form_group_class = add_css_class(
                 form_group_class, self.get_size_class(prefix='form-group'))
+            form_group_class = add_css_class(
+                form_group_class, 'row')
         return form_group_class
 
     def wrap_label_and_field(self, html):

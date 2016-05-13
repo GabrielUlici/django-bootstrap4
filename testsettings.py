@@ -44,7 +44,7 @@ ROOT_URLCONF = None
 
 BOOTSTRAP4 = {
     'javascript_in_head': True,
-    'required_css_class': 'bootstrap4-req',
+    # 'required_css_class': 'bootstrap4-req',
     'error_css_class': 'bootstrap4-err',
     'success_css_class': 'bootstrap4-bound',
 }
