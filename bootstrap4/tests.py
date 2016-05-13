@@ -89,7 +89,7 @@ class TestForm(forms.Form):
         widget=forms.TextInput(attrs={'addon_before': 'before', 'addon_after': 'after'}),
     )
 
-    # required_css_class = 'bootstrap4-req'
+    required_css_class = 'bootstrap4-req'
 
     def clean(self):
         cleaned_data = super(TestForm, self).clean()
