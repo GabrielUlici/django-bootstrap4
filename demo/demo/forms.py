@@ -31,6 +31,15 @@ class ContactForm(TestForm):
     pass
 
 
+# class ContactForm(forms.Form):
+#     contact_name = forms.CharField(required=True)
+#     contact_email = forms.EmailField(required=True)
+#     content = forms.CharField(
+#         required=True,
+#         widget=forms.Textarea
+#     )
+
+
 class ContactBaseFormSet(BaseFormSet):
     def add_fields(self, form, index):
         super(ContactBaseFormSet, self).add_fields(form, index)

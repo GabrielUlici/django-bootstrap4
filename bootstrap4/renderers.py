@@ -480,6 +480,8 @@ class FieldRenderer(BaseRenderer):
         if self.field.field.required and self.required_css_class:
             form_group_class = add_css_class(
                 form_group_class, self.required_css_class)
+            form_group_class = add_css_class(
+                form_group_class, 'row')
         if self.field_errors:
             form_group_class = add_css_class(form_group_class, 'has-danger')
         elif self.field.form.is_bound:
