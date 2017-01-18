@@ -22,11 +22,13 @@ Requirements
 Installation
 ------------
 
-1. Install using pip:
+.. 1. Install using pip:
 
-   ``pip install django-bootstrap4``
+..   ``pip install django-bootstrap4``
 
    Alternatively, you can install download or clone this repo and call ``pip install -e .``.
+   
+1. Download or clone this repo add it to the main file structure of your project.
 
 2. Add to INSTALLED_APPS in your ``settings.py``:
 
