@@ -227,7 +227,8 @@ def bootstrap_css():
     if bootstrap_theme_url():
         rendered_urls.append(
             render_link_tag(bootstrap_css_url(), integrity=INTEGRITY['theme']))
-     return mark_safe(''.join([url for url in rendered_urls]))
+
+    return mark_safe(''.join([url for url in rendered_urls]))
 
 
 @register.simple_tag
@@ -269,17 +270,34 @@ def bootstrap_javascript(jquery=None):
         url = bootstrap_jquery_url()
         if url:
             javascript += render_tag('script', attrs={'src': url})
+
     tether_base_url = bootstrap_tether_url()
+    if tether_base_url:
+        attrs = {'src': tether_base_url}
+        if INTEGRITY['tetherjs']:
+            attrs['integrity'] = INTEGRITY['tetherjs']
+            attrs['crossorigin'] = 'anonymous'
+        javascript += render_tag('script', attrs=attrs)
+
     bootstrap_url = bootstrap_javascript_url()
-    if bootstrap_url and tether_base_url:
-        javascript += render_tag('script', attrs={'src': tether_base_url})
-        javascript += render_tag('script', attrs={'src': bootstrap_url})
-        attrs = {'src': url}
+    if bootstrap_url:
+        attrs = {'src': bootstrap_url}
+        if INTEGRITY['javascript']:
+            attrs['integrity'] = INTEGRITY['javascript']
+            attrs['crossorigin'] = 'anonymous'
+        javascript += render_tag('script', attrs=attrs)
+
+    return mark_safe(javascript)
+
+    bootstrap_url = bootstrap_javascript_url()
+    if bootstrap_url:
+        attrs = {'src': bootstrap_url}
         if INTEGRITY['javascript']:
             attrs['integrity'] = INTEGRITY['javascript']
             attrs['crossorigin'] = 'anonymous'
         javascript += render_tag('script', attrs=attrs)
     return mark_safe(javascript)
+
 
 
 @register.simple_tag
