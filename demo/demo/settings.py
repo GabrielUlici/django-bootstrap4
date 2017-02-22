@@ -116,7 +116,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'bootstrap4',
     'demo',
 )
@@ -152,7 +151,6 @@ LOGGING = {
 
 # Settings for django-bootstrap4
 BOOTSTRAP4 = {
-    'set_required': False,
     'error_css_class': 'bootstrap4-error',
     'required_css_class': 'bootstrap4-required',
     'javascript_in_head': True,

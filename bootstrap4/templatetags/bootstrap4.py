@@ -31,6 +31,13 @@ MESSAGE_LEVEL_CLASSES = {
     DEFAULT_MESSAGE_LEVELS.ERROR: "alert alert-danger",
 }
 
+INTEGRITY = {
+    "css": r"sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ",
+    "javascript": r"sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ",
+    "tetherjs": r"sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb",
+    "jquery": r"sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n",
+}
+
 register = template.Library()
 
 
@@ -213,8 +220,14 @@ def bootstrap_css():
 
         {% bootstrap_css %}
     """
-    urls = [url for url in [bootstrap_css_url(), bootstrap_theme_url()] if url]
-    return mark_safe(''.join([render_link_tag(url) for url in urls]))
+    # urls = [url for url in [bootstrap_css_url(), bootstrap_theme_url()] if url]
+    # return mark_safe(''.join([render_link_tag(url) for url in urls]))
+    rendered_urls = render_link_tag(
+        bootstrap_css_url(), integrity=INTEGRITY['css'])
+    if bootstrap_theme_url():
+        rendered_urls.append(
+            render_link_tag(bootstrap_css_url(), integrity=INTEGRITY['theme']))
+     return mark_safe(''.join([url for url in rendered_urls]))
 
 
 @register.simple_tag
@@ -261,6 +274,11 @@ def bootstrap_javascript(jquery=None):
     if bootstrap_url and tether_base_url:
         javascript += render_tag('script', attrs={'src': tether_base_url})
         javascript += render_tag('script', attrs={'src': bootstrap_url})
+        attrs = {'src': url}
+        if INTEGRITY['javascript']:
+            attrs['integrity'] = INTEGRITY['javascript']
+            attrs['crossorigin'] = 'anonymous'
+        javascript += render_tag('script', attrs=attrs)
     return mark_safe(javascript)
 
 
@@ -431,17 +449,6 @@ def bootstrap_field(*args, **kwargs):
 
         exclude
             A list of field names that should not be rendered
-
-        set_required
-            When set to ``True`` and the field is required then the ``required`` attribute is set on the
-            rendered field
-
-            :default: ``True``
-
-        set_disabled
-            When set to ``True`` then the ``disabled`` attribute is set on the rendered field.
-
-            :default: ``False``
 
         size
             Controls the size of the rendered ``div.form-group`` through the use of CSS classes.

@@ -15,13 +15,13 @@ The ``BOOTSTRAP4`` dict variable contains these settings and defaults:
     BOOTSTRAP4 = {
 
         # The URL to the jQuery JavaScript file
-        'jquery_url': '//code.jquery.com/jquery.min.js',
+        'jquery_url': '//code.jquery.com/jquery-3.1.1.slim.min.js',
 
         # The URL to the tether JavaScript file
-        'tether_url': '//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js',
+        'tether_url': '//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js',
 
         # The Bootstrap base URL
-        'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/',
+        'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/',
 
         # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
         'css_url': None,
@@ -43,12 +43,6 @@ The ``BOOTSTRAP4`` dict variable contains these settings and defaults:
 
         # Field class to use in horizontal forms
         'horizontal_field_class': 'col-md-9',
-
-        # Set HTML required attribute on required fields
-        'set_required': True,
-
-        # Set HTML disabled attribute on disabled fields
-        'set_disabled': False,
 
         # Set placeholder attributes to label if no placeholder is provided
         'set_placeholder': True,

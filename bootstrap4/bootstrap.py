@@ -7,9 +7,9 @@ from importlib import import_module
 
 # Default settings
 BOOTSTRAP4_DEFAULTS = {
-    'jquery_url': '//code.jquery.com/jquery.min.js',
-    'tether_url': '//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js',
-    'base_url': '//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/',
+    'jquery_url': '//code.jquery.com/jquery-3.1.1.slim.min.js',
+    'tether_url': '//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js',
+    'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/',
     'css_url': None,
     'theme_url': None,
     'javascript_url': None,
@@ -17,8 +17,6 @@ BOOTSTRAP4_DEFAULTS = {
     'include_jquery': False,
     'horizontal_label_class': 'col-md-3',
     'horizontal_field_class': 'col-md-9',
-    'set_required': True,
-    'set_disabled': False,
     'set_placeholder': True,
     'required_css_class': '',
     'error_css_class': 'has-danger',

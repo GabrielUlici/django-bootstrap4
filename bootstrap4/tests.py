@@ -197,25 +197,32 @@ class SettingsTest(TestCase):
         from .bootstrap import BOOTSTRAP4
         self.assertTrue(BOOTSTRAP4)
 
+    def test_jquery_javascript_tag(self):
+        res = render_template_with_form('{% bootstrap_javascript %}')
+        self.assertIn(
+            '<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>',
+            res.strip()
+        )
+
     def test_tether_javascript_tag(self):
         res = render_template_with_form('{% bootstrap_javascript %}')
         self.assertIn(
-            '<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>',
+            '<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>',
             res.strip()
         )
 
     def test_bootstrap_javascript_tag(self):
         res = render_template_with_form('{% bootstrap_javascript %}')
         self.assertIn(
-            '<script src="//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.min.js"></script>',
+            '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>',
             res.strip()
         )
 
     def test_bootstrap_css_tag(self):
         res = render_template_with_form('{% bootstrap_css %}')
         self.assertIn(res.strip(), [
-            '<link rel="stylesheet" href="//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css">',
-            '<link href="//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css" rel="stylesheet">',
+            '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">',
+            '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">',
         ])
 
     def test_settings_filter(self):
@@ -404,15 +411,14 @@ class FieldTest(TestCase):
         self.assertIn('placeholder="Password"', res)
 
     def test_required_field(self):
+        """
+        Does a required field get the CSS class for required?
+        """
+        required_css_class='bootstrap3-req'
         required_field = render_form_field('subject')
-        self.assertIn('required', required_field)
-        self.assertIn('bootstrap4-req', required_field)
+        self.assertIn(required_css_class, required_field)
         not_required_field = render_form_field('message')
-        self.assertNotIn('required', not_required_field)
-        # Required field with required=0
-        form_field = 'form.subject'
-        rendered = render_template_with_form('{% bootstrap_field ' + form_field + ' set_required=0 %}')
-        self.assertNotIn('required', rendered)
+        self.assertNotIn(required_css_class, not_required_field)
         # Required settings in field
         form_field = 'form.subject'
         rendered = render_template_with_form(
@@ -420,12 +426,16 @@ class FieldTest(TestCase):
         self.assertIn('test-required', rendered)
 
     def test_empty_permitted(self):
+        """
+        If a form has empty_permitted, no fields should get the CSS class for required
+        """
+        required_css_class='bootstrap3-req'
         form = TestForm()
         res = render_form_field('subject', {'form': form})
-        self.assertIn('required', res)
+        self.assertIn(required_css_class, res)
         form.empty_permitted = True
         res = render_form_field('subject', {'form': form})
-        self.assertNotIn('required', res)
+        self.assertNotIn(required_css_class, res)
 
     def test_input_group(self):
         res = render_template_with_form('{% bootstrap_field form.subject addon_before="$"  addon_after=".00" %}')
