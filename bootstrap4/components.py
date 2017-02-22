@@ -17,7 +17,7 @@ def render_icon(icon, **kwargs):
         classes.append(kwargs.get('add_class'))
 
     attrs = {
-        'class':  '.join(classes),
+        'class': ''.join(classes),
     }
     if kwargs.get('title'):
         attrs['title'] = kwargs.get('title')
