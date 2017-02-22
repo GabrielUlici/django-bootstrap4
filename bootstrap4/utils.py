@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 import re
 
-from django.forms.widgets import flatatt
+from django.forms.utils import flatatt
 from django.template import Variable, VariableDoesNotExist
 from django.template.base import FilterExpression, kwarg_re, TemplateSyntaxError
 from django.template.loader import get_template
