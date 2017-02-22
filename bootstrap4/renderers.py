@@ -232,7 +232,7 @@ class FieldRenderer(BaseRenderer):
         self.field_help = text_value(mark_safe(field.help_text)) if self.show_help and field.help_text else ''
         self.field_errors = [conditional_escape(text_value(error)) for error in field.errors]
 
-        if 'placeholder' in kargs:
+        if 'placeholder' in kwargs:
             # Find the placeholder in kwargs, even if it's empty
             self.placeholder = kwargs['placeholder']
         elif get_bootstrap_setting('set_placeholder'):
