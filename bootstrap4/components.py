@@ -8,15 +8,20 @@ from bootstrap4.utils import render_tag
 from .text import text_value
 
 
-def render_icon(icon, title=''):
+def render_icon(icon, **kwargs):
     """
     Render a Bootstrap glyphicon icon
     """
+    classes = ['icon icon-{icon}'.format(icon=icon)]
+    if kwargs.get('add_class'):
+        classes.append(kwargs.get('add_class'))
+
     attrs = {
-        'class': 'icon icon-{icon}'.format(icon=icon),
+        'class':  '.join(classes),
     }
-    if title:
-        attrs['title'] = title
+    if kwargs.get('title'):
+        attrs['title'] = kwargs.get('title')
+
     return render_tag('span', attrs=attrs)
 
 
