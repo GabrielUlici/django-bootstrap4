@@ -374,11 +374,10 @@ class FieldRenderer(BaseRenderer):
 
     def wrap_widget(self, html):
         if isinstance(self.widget, CheckboxInput):
-            checkbox_class = add_css_class('checkbox', self.get_size_class())
-            html = '<div class="{klass}">{content}</div>'.format(
-                klass=checkbox_class,
-                content=html,
-            )
+            # Wrap checkboxes
+            # Note checkboxes do not get size classes, see #318
+            html = '<div class="checkbox">{content}</div>'.format(content=html)
+
         return html
 
     def make_input_group(self, html):
@@ -454,20 +453,19 @@ class FieldRenderer(BaseRenderer):
 
     def get_form_group_class(self):
         form_group_class = self.form_group_class
-        if self.field.errors and self.error_css_class:
-            form_group_class = add_css_class(
-                form_group_class, self.error_css_class)
+        if self.field.errors:
+            if self.error_css_class:
+                form_group_class = add_css_class(form_group_class, self.error_css_class)
+        else:
+            if self.field.form.is_bound:
+                form_group_class = add_css_class(form_group_class, self.success_css_class)
         if self.field.field.required and self.required_css_class:
-            form_group_class = add_css_class(
-                form_group_class, self.required_css_class)
-        if self.field_errors:
-            form_group_class = add_css_class(form_group_class, 'has-danger')
-        elif self.field.form.is_bound:
-            form_group_class = add_css_class(
-                form_group_class, self.success_css_class)
+            form_group_class = add_css_class(form_group_class, self.required_css_class)
         if self.layout == 'horizontal':
             form_group_class = add_css_class(
-                form_group_class, self.get_size_class(prefix='form-group'))
+                form_group_class,
+                self.get_size_class(prefix='form-group')
+            )
             form_group_class = add_css_class(
                 form_group_class, 'row')
         return form_group_class
