@@ -7,3 +7,8 @@ History
 ++++++++++++++++++
 
 * bootstrap4 alpha 2
+
+0.0.2 (2017-02-23)
+++++++++++++++++++
+
+- fix a lot of bugs
