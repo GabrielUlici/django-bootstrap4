@@ -48,3 +48,6 @@ docs/_build
 
 # Django
 local_settings.py
+
+#virtualenv stuff
+venv/*
